@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEngine.UI;
+using UnityEngine.Networking;
 using TMPro;
+using System;
 
 public class DataBaseHandler : MonoBehaviour
 {
@@ -15,8 +16,7 @@ public class DataBaseHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI cardNumber;
     void Start()
     {
-        string data = File.ReadAllText(Application.dataPath + "/Json/db.json");
-        db =  JsonUtility.FromJson<DataBase>(data);
+        StartCoroutine(GetText());
     }
 
     public Object SearshObject(int id)
@@ -42,5 +42,34 @@ public class DataBaseHandler : MonoBehaviour
             actualCardId = 0;
 
         cardNumber.text = db.dataBase[actualObjectId].deck[actualCardId].ToString();
+    }
+
+    [ContextMenu("leer simple")]
+    public void starcorrutinenet()
+    {
+        StartCoroutine(GetText());
+    }
+
+    IEnumerator GetText()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("https://my-json-server.typicode.com/patopaco078/http_SID/db");
+        yield return www.SendWebRequest();
+        if (www.isNetworkError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            // Show results as text
+            Debug.Log(www.downloadHandler.text);
+
+            // Or retrieve results as binary data
+            byte[] results = www.downloadHandler.data;
+
+            //string textwww = File.ReadAllText(www.downloadHandler.text);
+            //Debug.Log(textwww);
+            db = JsonUtility.FromJson<DataBase>(www.downloadHandler.text);
+        }
+        
     }
 }

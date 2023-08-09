@@ -1,0 +1,22 @@
+{
+    "dataBase":[
+        {
+            "id":1,
+            "name":"manolo",
+            "state":true,
+            "deck":[1,2,3,4,5]
+        },
+        {
+            "id":2,
+            "name":"juan",
+            "state":true,
+            "deck":[6,7,8,9,10]
+        },
+        {
+            "id":3,
+            "name":"santiago",
+            "state":true,
+            "deck":[11,12,13,14,15]
+        }
+    ]
+}

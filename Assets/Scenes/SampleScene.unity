@@ -756,19 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   db:
-    dataBase:
-    - id: 1
-      name: manolo
-      state: 1
-      deck: 0100000002000000030000000400000005000000
-    - id: 2
-      name: juan
-      state: 1
-      deck: 060000000700000008000000090000000a000000
-    - id: 3
-      name: santiago
-      state: 1
-      deck: 0b0000000c0000000d0000000e0000000f000000
+    dataBase: []
   name: {fileID: 448592692}
   cardNumber: {fileID: 2120093205}
 --- !u!1 &1107385826
